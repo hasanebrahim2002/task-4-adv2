@@ -20,7 +20,6 @@ const ReadProducts = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const [deletedTask, setDeletedTask] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
-
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -71,6 +70,16 @@ const ReadProducts = () => {
   const currentProducts = filteredProducts.slice(start, end);
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const navigate = useNavigate();
+  const handleDelete = async (id: number) => {
+    await axios.delete(`https://dashboard-i552.onrender.com/api/items/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Accept: "application/json",
+      },
+    });
+
+    setProducts((prev) => prev.filter((p) => p.id !== id));
+  };
   return (
     <div>
       <div className="search-box">
@@ -200,7 +209,11 @@ const ReadProducts = () => {
         </button>
       </div>
       {showPopUp && (
-        <PopUp productId={deletedTask} closePopup={() => setShowPopUp(false)} />
+        <PopUp
+          productId={deletedTask}
+          closePopup={() => setShowPopUp(false)}
+          onDelete={handleDelete}
+        />
       )}
     </div>
   );
