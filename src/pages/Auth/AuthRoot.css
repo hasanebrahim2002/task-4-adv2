@@ -1,0 +1,267 @@
+/* .auth {
+  height: 100vh;
+  background: linear-gradient(71.17deg, #feaf00 19.35%, #f8d442 90.12%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth .auth-flex {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+}
+
+.auth .auth-img {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 43px;
+}
+.auth h2 {
+  text-align: center;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding-bottom: 9px;
+}
+
+.auth p {
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  color: #6c6c6c;
+}
+.auth .auth-flex .signin .paraTitle {
+  padding-bottom: 50px;
+}
+.auth .auth-div-input {
+  display: flex;
+  flex-direction: column;
+}
+.auth .auth-div-input label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #6c6c6c;
+  padding-bottom: 10px;
+}
+.auth .auth-div-input input {
+  width: 100%;
+  height: 44px;
+  max-width: 415px;
+  border: 1px solid #e5e5e5;
+  outline-width: 0;
+  border-radius: 4px;
+  padding-left: 8px;
+  margin-bottom: 25px;
+}
+.auth .auth-div-input input::placeholder {
+  color: #cdcdcd;
+  font-weight: 400;
+  font-size: 12px;
+}
+.auth .authSubmit {
+  width: 415.8736877441406px;
+  height: 44px;
+  border-radius: 4px;
+  background-color: #feaf00;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  color: #ffffff;
+  border: none;
+  margin-bottom: 27px;
+}
+
+.auth-flex p a {
+  color: #feaf00;
+}
+
+.auth .auth-flex .signup .inline {
+  display: inline-block;
+  width: 50%;
+}
+.fileImage {
+  display: none;
+}
+
+.upload-box {
+  width: 100px;
+  height: 100px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.upload-box img {
+  width: 50px;
+} */
+/* /////////////////////////////////////////////////////////////////////////// */
+.auth {
+  height: 100vh;
+  background: linear-gradient(71.17deg, #feaf00 19.35%, #f8d442 90.12%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.auth .auth-flex {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+}
+
+.auth .auth-img {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 43px;
+}
+
+.auth h2 {
+  text-align: center;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding-bottom: 9px;
+}
+
+.auth p {
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  color: #6c6c6c;
+}
+
+.auth .auth-flex .signin .paraTitle {
+  padding-bottom: 50px;
+}
+
+.auth .auth-div-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth .auth-div-input label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #6c6c6c;
+  padding-bottom: 10px;
+}
+
+.auth .auth-div-input input {
+  width: 100%;
+  height: 44px;
+  max-width: 415px;
+  border: 1px solid #e5e5e5;
+  outline-width: 0;
+  border-radius: 4px;
+  padding-left: 8px;
+  margin-bottom: 25px;
+}
+
+.auth .auth-div-input input::placeholder {
+  color: #cdcdcd;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.auth .authSubmit {
+  width: 415.8736877441406px;
+  height: 44px;
+  border-radius: 4px;
+  background-color: #feaf00;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  color: #ffffff;
+  border: none;
+  margin-bottom: 27px;
+  cursor: pointer;
+}
+
+.auth-flex p a {
+  color: #feaf00;
+}
+
+.auth .auth-flex .signup .inline {
+  display: inline-block;
+  width: 50%;
+}
+
+.fileImage {
+  display: none;
+}
+
+.upload-box {
+  width: 100px;
+  height: 100px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.upload-box img {
+  width: 50px;
+}
+
+.imgeDiv {
+  width: 100%;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+  .auth {
+    height: auto;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .auth .auth-flex {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .auth .auth-flex .signup .inline {
+    width: 100%;
+  }
+
+  .auth .auth-div-input input {
+    max-width: 100%;
+  }
+
+  .auth .authSubmit {
+    width: 100%;
+  }
+
+  .upload-box {
+    width: 90px;
+    height: 90px;
+  }
+
+  .upload-box img {
+    width: 40px;
+  }
+
+  .auth h2 {
+    font-size: 20px;
+  }
+
+  .auth p {
+    font-size: 13px;
+  }
+}

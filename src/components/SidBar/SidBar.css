@@ -1,0 +1,81 @@
+.sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2eae1;
+}
+.sidebarImg {
+  width: 84px;
+  height: 23px;
+  position: relative;
+  margin: 35px 0 54px 0;
+}
+.sidebarImg img {
+  height: 100%;
+  width: 100%;
+}
+.sidebarImg::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  top: 0;
+  left: -10px;
+  background-color: #f8d442;
+}
+
+.sidbarImgPerson {
+  width: 128px;
+  height: 128px;
+  padding-bottom: 20px;
+}
+
+.sidbarImgPerson img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.personInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.personInfo h2 {
+  font-weight: 700;
+  font-size: 17px;
+  padding-bottom: 91px;
+}
+
+.sidebar .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sidebar .links a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+}
+.active {
+  background-color: #feaf00;
+  border-radius: 4px;
+}
+
+.links a {
+  padding: 12px 56px 12px 40px;
+  margin-bottom: 31px;
+}
+
+.logout {
+  height: 100%;
+  width: 85px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
