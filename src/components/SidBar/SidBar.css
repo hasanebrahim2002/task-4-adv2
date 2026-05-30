@@ -4,6 +4,9 @@
   flex-direction: column;
   align-items: center;
   background-color: #f2eae1;
+  position: sticky;
+  left: 0;
+  top: 0;
 }
 .sidebarImg {
   width: 84px;
