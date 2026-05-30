@@ -10,49 +10,44 @@ import ReadProducts from "./pages/ReadProducts/ReadProducts";
 import DetailsProduct from "./pages/DetailsProduct/DetailsProduct";
 import AddProduct from "./pages/AddProduct";
 import EditeProduct from "./pages/EditeProduct";
-const routes = createHashRouter(
-  [
-    {
-      path: "/",
-      element: <AuthRoot />,
-      children: [
-        {
-          path: "",
-          element: <SignIn />,
-        },
-        {
-          path: "signup",
-          element: <Signup />,
-        },
-      ],
-    },
-    {
-      path: "/dashboard",
-      element: <Dashboard />,
-      children: [
-        {
-          path: "",
-          element: <ReadProducts />,
-        },
-        {
-          path: "detailsProduct/:id",
-          element: <DetailsProduct />,
-        },
-        {
-          path: "add",
-          element: <AddProduct />,
-        },
-        {
-          path: "edite/:id",
-          element: <EditeProduct />,
-        },
-      ],
-    },
-  ],
+const routes = createHashRouter([
   {
-    basename: "/task-4-adv2",
+    path: "/",
+    element: <AuthRoot />,
+    children: [
+      {
+        path: "",
+        element: <SignIn />,
+      },
+      {
+        path: "signup",
+        element: <Signup />,
+      },
+    ],
   },
-);
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "",
+        element: <ReadProducts />,
+      },
+      {
+        path: "detailsProduct/:id",
+        element: <DetailsProduct />,
+      },
+      {
+        path: "add",
+        element: <AddProduct />,
+      },
+      {
+        path: "edite/:id",
+        element: <EditeProduct />,
+      },
+    ],
+  },
+]);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={routes} />
