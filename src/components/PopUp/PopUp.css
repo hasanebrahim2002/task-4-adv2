@@ -76,7 +76,6 @@
     padding: 0 30px;
   }
 }
-
 @media (max-width: 600px) {
   .popup {
     padding: 30px;
