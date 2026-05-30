@@ -83,10 +83,6 @@
   cursor: pointer;
 }
 
-/* ========================= */
-/* Mobile Responsive Only */
-/* ========================= */
-
 .sidebarToggle {
   display: none;
 }
