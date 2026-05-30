@@ -1,7 +1,7 @@
 import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import AuthRoot from "./pages/Auth/AuthRoot";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/Signup";
@@ -10,7 +10,7 @@ import ReadProducts from "./pages/ReadProducts/ReadProducts";
 import DetailsProduct from "./pages/DetailsProduct/DetailsProduct";
 import AddProduct from "./pages/AddProduct";
 import EditeProduct from "./pages/EditeProduct";
-const routes = createBrowserRouter(
+const routes = createHashRouter(
   [
     {
       path: "/",
