@@ -21,6 +21,7 @@ interface CrudFormProps {
   submitCrud: string;
   setData: Dispatch<SetStateAction<CrudData>>;
   setSubmit: Dispatch<SetStateAction<boolean>>;
+  loading: boolean;
 }
 interface CrudData {
   name: string;
@@ -33,6 +34,7 @@ const CrudForm = ({
   submitCrud,
   setData,
   setSubmit,
+  loading,
 }: CrudFormProps) => {
   const [preview, setPreview] = useState<string>("");
 
@@ -67,11 +69,11 @@ const CrudForm = ({
                             ? preview
                             : input.value
                               ? input.value
-                              : "/dashboard-s/assets/UploadFile.png"
+                              : "/task-4-adv2/assets/UploadFile.png"
                         }
                         onError={(e) => {
                           e.currentTarget.src =
-                            "/dashboard-s/assets/defaultProduct.png";
+                            "/task-4-adv2/assets/defaultProduct.png";
                         }}
                         alt=""
                       />
@@ -115,7 +117,9 @@ const CrudForm = ({
           })}
         </div>
         <div className="addProductBtn">
-          <input type="submit" value={submitCrud} />
+          <button type="submit" value={submitCrud} disabled={loading}>
+            {loading ? "Loading..." : submitCrud}
+          </button>
         </div>
       </form>
     </div>

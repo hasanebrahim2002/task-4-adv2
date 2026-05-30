@@ -31,45 +31,74 @@ const EditeProduct = () => {
     image: null,
   });
   const [submit, setSubmit] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   useEffect(() => {
-    axios
-      .get(`https://dashboard-i552.onrender.com/api/items/${id}`, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-          Accept: "application/json",
-        },
-      })
-      .then((res) => setOldData(res.data));
+    const fetchItem = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          `https://dashboard-i552.onrender.com/api/items/${id}`,
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+              Accept: "application/json",
+            },
+          },
+        );
+
+        setOldData(res.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchItem();
   }, [id]);
   useEffect(() => {
-    if (submit) {
-      const newData = {
-        name: data.name ? data.name : oldData.name,
-        price: data.price ? data.price : oldData.price,
-        image: data.image ? data.image : null,
-        _method: "PUT",
-      };
-      axios
-        .post(`https://dashboard-i552.onrender.com/api/items/${id}`, newData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: localStorage.getItem("token"),
-            Accept: "application/json",
+    const updateItem = async () => {
+      if (!submit) return;
+
+      try {
+        setLoading(true);
+
+        const newData = {
+          name: data.name ? data.name : oldData.name,
+          price: data.price ? data.price : oldData.price,
+          image: data.image ? data.image : null,
+          _method: "PUT",
+        };
+
+        await axios.post(
+          `https://dashboard-i552.onrender.com/api/items/${id}`,
+          newData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: localStorage.getItem("token"),
+              Accept: "application/json",
+            },
           },
-        })
-        .then(() => {
-          navigate("/dashboard");
-        });
-      console.log(newData);
-    }
+        );
+
+        navigate("/dashboard");
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    updateItem();
   }, [
     submit,
+    id,
+    navigate,
     data.image,
     data.name,
     data.price,
-    id,
-    navigate,
     oldData.name,
     oldData.price,
   ]);
@@ -101,6 +130,7 @@ const EditeProduct = () => {
       ]}
       setData={setData}
       setSubmit={setSubmit}
+      loading={loading}
     />
   );
 };

@@ -22,29 +22,49 @@ const Signup = () => {
     password_confirmation: "",
     profile_image: null,
   });
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
-    const newData = { ...data, ["user_name"]: data.email.split("@")[0] };
-    if (data.first_name != "") {
-      console.log(newData);
-      axios
-        .post("https://dashboard-i552.onrender.com/api/register", newData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Accept: "application/json",
+    const registerUser = async () => {
+      const newData = {
+        ...data,
+        user_name: data.email.split("@")[0],
+      };
+
+      if (data.first_name === "") return;
+
+      try {
+        setLoading(true);
+
+        console.log(newData);
+
+        const res = await axios.post(
+          "https://dashboard-i552.onrender.com/api/register",
+          newData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Accept: "application/json",
+            },
           },
-        })
-        .then((res) => {
-          localStorage.setItem("token", `Bearer ${res.data.data.token}`);
-          localStorage.setItem("user", JSON.stringify(res.data.data.user));
-          navigate("/dashboard");
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [navigate, data]);
+        );
+
+        localStorage.setItem("token", `Bearer ${res.data.data.token}`);
+        localStorage.setItem("user", JSON.stringify(res.data.data.user));
+
+        navigate("/dashboard");
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    registerUser();
+  }, [data, navigate]);
   return (
     <div className="auth-flex">
       <Form<RegisterData>
-        logo="/dashboard-s/assets/Logo.png"
+        logo="/task-4-adv2/assets/Logo.png"
         title="Sign up"
         paraTitle="Fill in the following fields to create an account."
         inputs={[
@@ -94,6 +114,7 @@ const Signup = () => {
         }}
         className="signup"
         setData={setData}
+        loading={loading}
       />
       <p>
         Do you have an account? <Link to="/">Sign in</Link>

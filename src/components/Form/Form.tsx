@@ -5,7 +5,6 @@ import {
   type FormEvent,
   type SetStateAction,
 } from "react";
-// import type { RegisterData } from "../../pages/Signup";
 
 interface Input {
   label?: string;
@@ -22,6 +21,7 @@ interface FormProps<T> {
   initialData: T;
   className: string;
   setData: Dispatch<SetStateAction<T>>;
+  loading: boolean;
 }
 // interface FormData {
 //   email: string;
@@ -36,6 +36,7 @@ const Form = <T,>({
   initialData,
   className,
   setData,
+  loading,
 }: FormProps<T>) => {
   const data = useRef<T>(initialData);
   function sendData(e: FormEvent) {
@@ -74,11 +75,10 @@ const Form = <T,>({
                 <div className="upload-container">
                   <label htmlFor="profile-upload" className="upload-box">
                     <img
-                      src={preview || "/dashboard-s/assets/UploadFile.png"}
+                      src={preview || "/task-4-adv2/assets/UploadFile.png"}
                       alt=""
                     />
                   </label>
-
                   <input
                     id="profile-upload"
                     type={input.type}
@@ -100,7 +100,9 @@ const Form = <T,>({
             </div>
           );
         })}
-        <input type="submit" value={submit} className="authSubmit" />
+        <button type="submit" className="authSubmit" disabled={loading}>
+          {loading ? "Loading..." : submit}
+        </button>
       </form>
     </div>
   );

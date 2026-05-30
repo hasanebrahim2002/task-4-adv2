@@ -79,3 +79,50 @@
   align-items: center;
   cursor: pointer;
 }
+
+/* ========================= */
+/* Mobile Responsive Only */
+/* ========================= */
+
+.sidebarToggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebarToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 16%;
+    right: -30px;
+
+    transform: translateY(-50%);
+
+    width: 30px;
+    height: 60px;
+
+    background-color: #f8d442;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 0 6px 6px 0;
+    z-index: 99999;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 99998;
+
+    transform: translateX(calc(-100% + 30px));
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}

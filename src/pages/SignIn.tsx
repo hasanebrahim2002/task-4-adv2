@@ -13,26 +13,41 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    if (data.email != "") {
-      axios
-        .post("https://dashboard-i552.onrender.com/api/login", data, {
-          headers: {
-            Accept: "application/json",
+    const loginUser = async () => {
+      if (data.email === "") return;
+
+      try {
+        setLoading(true);
+
+        const res = await axios.post(
+          "https://dashboard-i552.onrender.com/api/login",
+          data,
+          {
+            headers: {
+              Accept: "application/json",
+            },
           },
-        })
-        .then((res) => {
-          localStorage.setItem("token", `Bearer ${res.data.token}`);
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-          navigate("/dashboard");
-        })
-        .catch((err) => console.log(err));
-    }
+        );
+
+        localStorage.setItem("token", `Bearer ${res.data.token}`);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+
+        navigate("/dashboard");
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loginUser();
   }, [data, navigate]);
   return (
     <div className="auth-flex">
       <Form<FormData>
-        logo="/dashboard-s/assets/Logo.png"
+        logo="/task-4-adv2/assets/Logo.png"
         title="Sign In"
         paraTitle="Enter your credentials to access your account"
         inputs={[
@@ -56,6 +71,7 @@ const SignIn = () => {
         }}
         className="signin"
         setData={setData}
+        loading={loading}
       />
       <p>
         Don’t have an account? <Link to="/signup">Create one</Link>

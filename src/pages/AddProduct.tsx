@@ -14,22 +14,36 @@ const AddProduct = () => {
     image: null,
   });
   const [submit, setSubmit] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (submit) {
-      axios
-        .post("https://dashboard-i552.onrender.com/api/items", data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: localStorage.getItem("token"),
-            Accept: "application/json",
+    const createItem = async () => {
+      if (!submit) return;
+      try {
+        setLoading(true);
+
+        await axios.post(
+          "https://dashboard-i552.onrender.com/api/items",
+          data,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: localStorage.getItem("token"),
+              Accept: "application/json",
+            },
           },
-        })
-        .then(() => {
-          navigate("/dashboard");
-        });
-    }
+        );
+
+        navigate("/dashboard");
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    createItem();
   }, [submit, navigate, data]);
   return (
     <CrudForm
@@ -56,6 +70,7 @@ const AddProduct = () => {
       ]}
       setData={setData}
       setSubmit={setSubmit}
+      loading={loading}
     />
   );
 };

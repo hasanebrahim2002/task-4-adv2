@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import SidBar from "../components/SidBar/SidBar";
+import SidBar from "../../components/SidBar/SidBar";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
 import { LuBoxes } from "react-icons/lu";
+import "./Dashboard.css";
 const Dashboard = () => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -11,10 +12,7 @@ const Dashboard = () => {
     }
   }, [navigate]);
   return (
-    <div
-      className="dash"
-      style={{ display: "grid", gridTemplateColumns: "1fr 4fr" }}
-    >
+    <div className="dash">
       <SidBar
         links={[
           {

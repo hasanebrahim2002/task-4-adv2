@@ -19,21 +19,33 @@ const ReadProducts = () => {
   const [search, setSearch] = useState("");
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const [deletedTask, setDeletedTask] = useState<number>(0);
-  const [refreach, setRefreach] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    axios
-      .get("https://dashboard-i552.onrender.com/api/items", {
-        headers: {
-          Authorization: `${localStorage.getItem("token")}`,
-          Accept: "application/json",
-        },
-      })
-      .then((res) => {
-        setRefreach(!refreach);
+    const fetchData = async () => {
+      setLoading(true);
+
+      try {
+        const res = await axios.get(
+          "https://dashboard-i552.onrender.com/api/items",
+          {
+            headers: {
+              Authorization: `${localStorage.getItem("token")}`,
+              Accept: "application/json",
+            },
+          },
+        );
+
         setProducts(res.data);
-      });
-  }, [refreach]);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -81,7 +93,19 @@ const ReadProducts = () => {
         </p>
       </div>
       <div className="mainProducts">
-        {currentProducts.length > 0 ? (
+        {loading ? (
+          Array.from({ length: itemsPerPage }).map((_, index) => (
+            <div className="cardSkeleton" key={index}>
+              <div className="skeletonImage"></div>
+              <div className="skeletonTitle"></div>
+
+              <div className="skeletonButtons">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          ))
+        ) : currentProducts.length > 0 ? (
           currentProducts.map((product) => (
             <div className="card" key={product.id}>
               <img
@@ -89,9 +113,10 @@ const ReadProducts = () => {
                 alt={product.name}
                 onError={(e) => {
                   e.currentTarget.src =
-                    "/dashboard-s/assets/defaultProduct.png";
+                    "/task-4-adv2/assets/defaultProduct.png";
                 }}
               />
+
               <div
                 className="overlay"
                 onClick={() =>
@@ -99,6 +124,7 @@ const ReadProducts = () => {
                 }
               >
                 <h2>{product.name}</h2>
+
                 <div className="buttons">
                   <button
                     className="editButton"
@@ -108,6 +134,7 @@ const ReadProducts = () => {
                   >
                     <Link to={`/dashboard/edite/${product.id}`}>Edit</Link>
                   </button>
+
                   <button
                     className="deleteButton"
                     onClick={(e) => {

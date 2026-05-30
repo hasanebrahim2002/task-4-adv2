@@ -148,7 +148,7 @@
   display: flex;
   justify-content: center;
 }
-.addProductBtn input {
+.addProductBtn button {
   background-color: #feaf00;
   color: white;
   border: none;
@@ -177,7 +177,7 @@
     min-height: 180px;
     width: 100%;
   }
-  .addProductBtn input {
+  .addProductBtn button {
     margin-top: 50px;
   }
   .feildsCrud > :first-child {
@@ -196,5 +196,10 @@
 
   .crudupload-box {
     min-height: 160px;
+  }
+}
+@media (max-width: 769px) {
+  .crudMain {
+    margin-left: 50px;
   }
 }

@@ -2,6 +2,7 @@
   "name": "dashbord",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://hasanebrahim2002.github.io/task-4-adv2/",
   "type": "module",
   "scripts": {
     "dev": "vite",

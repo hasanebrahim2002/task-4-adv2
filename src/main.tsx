@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthRoot from "./pages/Auth/AuthRoot";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import ReadProducts from "./pages/ReadProducts/ReadProducts";
 import DetailsProduct from "./pages/DetailsProduct/DetailsProduct";
 import AddProduct from "./pages/AddProduct";
@@ -50,7 +50,7 @@ const routes = createBrowserRouter(
     },
   ],
   {
-    basename: "/dashboard-s",
+    basename: "/task-4-adv2",
   },
 );
 createRoot(document.getElementById("root")!).render(

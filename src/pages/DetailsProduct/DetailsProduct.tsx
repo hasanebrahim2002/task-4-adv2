@@ -35,7 +35,7 @@ const DetailsProduct = () => {
           <img
             src={dataOfProduct?.image_url}
             onError={(e) => {
-              e.currentTarget.src = "/assets/defaultProduct.png";
+              e.currentTarget.src = "/task-4-adv2/assets/defaultProduct.png";
             }}
             alt=""
           />

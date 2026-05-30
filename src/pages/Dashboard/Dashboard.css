@@ -1,0 +1,10 @@
+.dash {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+@media (max-width: 768px) {
+  .dash {
+    grid-template-columns: none;
+  }
+}
