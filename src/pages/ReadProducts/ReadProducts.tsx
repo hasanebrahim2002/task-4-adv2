@@ -159,7 +159,7 @@ const ReadProducts = () => {
             </div>
           ))
         ) : (
-          <p>Loading....</p>
+          <p>Not Found !</p>
         )}
       </div>
       <div className="pagination">
